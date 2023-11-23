@@ -611,6 +611,7 @@ class Treemap extends StatefulWidget {
     required this.tooltipSettings,
     required this.enableDrilldown,
     required this.breadcrumbs,
+    this.isDynamicLayout = false,
   }) : super(key: key);
 
   /// Represents the length of the given data source.
@@ -664,6 +665,9 @@ class Treemap extends StatefulWidget {
   /// The breadcrumbs items align horizontally across the top of the treemap.
   /// It provides to navigate the current tile to the previous tile.
   final TreemapBreadcrumbs? breadcrumbs;
+
+  /// Data weight dynamically changes based on the data source.
+  final bool isDynamicLayout;
 
   @override
   State<Treemap> createState() => _TreemapState();
@@ -1062,6 +1066,12 @@ class _TreemapState extends State<Treemap> with SingleTickerProviderStateMixin {
       _invalidate();
     }
 
+    // Update data when the data source is changed dynamically.
+    if (widget.isDynamicLayout) {
+      _levelsLength = widget.levels.length;
+      _invalidate();
+    }
+
     super.didUpdateWidget(oldWidget);
   }
 
@@ -1335,6 +1345,8 @@ class _SquarifiedTreemapState extends State<_SquarifiedTreemap>
 
   @override
   void didUpdateWidget(_SquarifiedTreemap oldWidget) {
+    _visibleTile = widget.initialTile;
+
     if (oldWidget.layoutDirection != widget.layoutDirection) {
       if (widget.tooltipKey.currentContext != null) {
         final RenderTooltip tooltipRenderBox = widget.tooltipKey.currentContext!
@@ -1515,6 +1527,12 @@ class _SliceAndDiceTreemapState extends State<_SliceAndDiceTreemap>
     }
 
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant _SliceAndDiceTreemap oldWidget) {
+    _visibleTile = widget.initialTile;
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

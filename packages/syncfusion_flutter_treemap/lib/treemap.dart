@@ -1727,6 +1727,7 @@ class TreemapColorMapper extends DiagnosticableTree {
 /// * [SfTreemap.legend], to enable legend.
 /// * [TreemapLevel.labelBuilder], to add a label for each tile.
 class SfTreemap extends StatelessWidget {
+
   /// Creates a treemap based on the squarified algorithm.
   ///
   /// To populate the treemap with the data source, set the count
@@ -1839,6 +1840,7 @@ class SfTreemap extends StatelessWidget {
     this.tooltipSettings = const TreemapTooltipSettings(),
     this.enableDrilldown = false,
     this.breadcrumbs,
+    this.isDynamicLayout = false,
   })  : assert(dataCount > 0),
         assert(levels.length > 0),
         assert(colorMappers == null || colorMappers.length > 0),
@@ -1960,6 +1962,7 @@ class SfTreemap extends StatelessWidget {
     this.tileHoverBorder,
     this.enableDrilldown = false,
     this.breadcrumbs,
+    this.isDynamicLayout = false,
   })  : assert(dataCount > 0),
         assert(levels.length > 0),
         assert(colorMappers == null || colorMappers.length > 0),
@@ -2080,6 +2083,7 @@ class SfTreemap extends StatelessWidget {
     this.tileHoverBorder,
     this.enableDrilldown = false,
     this.breadcrumbs,
+    this.isDynamicLayout = false,
   })  : assert(dataCount > 0),
         assert(levels.length > 0),
         assert(colorMappers == null || colorMappers.length > 0),
@@ -2087,6 +2091,9 @@ class SfTreemap extends StatelessWidget {
         _layoutType = LayoutType.dice,
         layoutDirection = TreemapLayoutDirection.topLeft,
         super(key: key);
+
+  /// For dynamic weight auto change by time
+  final bool isDynamicLayout;
 
   /// Specifies the length of the data source.
   ///
@@ -3051,6 +3058,7 @@ class SfTreemap extends StatelessWidget {
       tooltipSettings: tooltipSettings,
       enableDrilldown: enableDrilldown,
       breadcrumbs: breadcrumbs,
+      isDynamicLayout: isDynamicLayout,
     );
   }
 
