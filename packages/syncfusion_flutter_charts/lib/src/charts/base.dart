@@ -3257,7 +3257,8 @@ class RenderLoadingIndicator extends RenderProxyBox
       }
     }
     if (buildLoadMoreIndicator) {
-      markNeedsBuild();
+        // markNeedsBuild();
+        markNeedsLayout();
     }
   }
 

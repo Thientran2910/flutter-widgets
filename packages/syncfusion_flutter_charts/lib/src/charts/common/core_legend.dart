@@ -449,7 +449,8 @@ class LegendLayoutState extends State<LegendLayout> {
       if (renderObject != null &&
           renderObject.attached &&
           renderObject is RenderConstrainedLayoutBuilder) {
-        renderObject.markNeedsBuild();
+        // renderObject.markNeedsBuild();
+        renderObject.markNeedsLayout();
       }
     }
   }
