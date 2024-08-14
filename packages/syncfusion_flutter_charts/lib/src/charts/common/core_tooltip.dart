@@ -166,7 +166,7 @@ class CoreTooltipState extends State<CoreTooltip>
           renderObject.attached &&
           renderObject is RenderConstrainedLayoutBuilder) {
         // renderObject.markNeedsBuild();
-        renderObject.markNeedsLayout();
+        renderObject.markNeedsPaint();
       }
     }
   }
